@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2024 at 10:51 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jan 18, 2024 at 08:26 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -55,10 +55,12 @@ INSERT INTO `auth_groups` (`id`, `name`, `description`) VALUES
 (1, 'Administrator', 'Super Admin'),
 (11, 'Manager Accounting', 'First Approval'),
 (12, 'Manager HRGA', 'Second Approval'),
-(13, 'Accounting', 'Common User'),
+(13, 'Accounting', 'Admin Accounting'),
 (14, 'Manager Purchasing', 'First Approval'),
-(15, 'Purchasing', 'Common User'),
-(16, 'Admin HRGA', 'Admin HRGA');
+(15, 'Purchasing', 'Admin Purchasing'),
+(16, 'Admin HRGA', 'Admin HRGA'),
+(17, 'Sales', 'Admin Sales'),
+(18, 'Manager Sales', 'First Approval');
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,9 @@ INSERT INTO `auth_groups_users` (`groups_users_id`, `group_id`, `user_id`) VALUE
 (13, 13, 13),
 (17, 14, 17),
 (16, 15, 16),
-(15, 16, 15);
+(15, 16, 15),
+(18, 17, 18),
+(19, 18, 19);
 
 -- --------------------------------------------------------
 
@@ -197,7 +201,22 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (78, '192.168.174.186', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-17 04:05:22', 1),
 (79, '192.168.174.186', 'ipul@ijtt-id.com', 16, '2024-01-17 04:31:22', 1),
 (80, '192.168.174.186', 'dwi.cahyono@ijtt-id.com', NULL, '2024-01-17 05:48:11', 0),
-(81, '192.168.174.186', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-17 05:48:20', 1);
+(81, '192.168.174.186', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-17 05:48:20', 1),
+(82, '192.168.175.105', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-18 01:07:34', 1),
+(83, '192.168.174.186', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-18 01:35:22', 1),
+(84, '192.168.174.186', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-18 04:15:10', 1),
+(85, '192.168.174.186', 'ida.rusdiansyah@ijtt-id.com', 18, '2024-01-18 04:34:01', 1),
+(86, '192.168.174.186', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-18 04:35:03', 1),
+(87, '192.168.174.186', 'ida.rusdiansyah@ijtt-id.com', 18, '2024-01-18 04:38:33', 1),
+(88, '192.168.174.186', 'aris.mamun@ijtt-id.com', 19, '2024-01-18 04:39:30', 1),
+(89, '192.168.174.186', 'heni.priyanti@ijtt-id.com', 15, '2024-01-18 04:40:51', 1),
+(90, '192.168.174.186', 'ida.rusdiansyah@ijtt-id.com', 18, '2024-01-18 04:53:06', 1),
+(91, '192.168.175.105', 'dwi.cahyono@ijtt-id.com', NULL, '2024-01-18 05:42:49', 0),
+(92, '192.168.175.105', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-18 05:42:56', 1),
+(93, '192.168.175.105', 'ida.rusdiansyah@ijtt-id.com', 18, '2024-01-18 06:04:32', 1),
+(94, '192.168.175.105', 'ipul@ijtt-id.com', 16, '2024-01-18 06:09:20', 1),
+(95, '192.168.175.105', 'janiar@ijtt-id.com', 17, '2024-01-18 06:10:01', 1),
+(96, '192.168.175.105', 'heni.priyanti@ijtt-id.com', 15, '2024-01-18 06:10:42', 1);
 
 -- --------------------------------------------------------
 
@@ -584,7 +603,7 @@ INSERT INTO `karyawan` (`karyawan_id`, `karyawan_code`, `karyawan_name`, `depart
 (281, '20010844', 'AHMAD ROSYADI ', 4, 'Plant 1'),
 (282, '20020852', 'MUSTOFA FARIS IZZUDDIN', 1, 'Plant 2'),
 (283, '20120906', 'HENI PRIYANTI', 5, 'Plant 1'),
-(284, '20120910', 'ZULFY TRIYOGA', 6, ''),
+(284, '20120910', 'ZULFY TRIYOGA', 6, 'Plant 1'),
 (285, '21010934', 'ALFIAN AJI DARMAWAN ', 7, ''),
 (286, '21040954', 'DIKA ALAMSYAH', 1, 'Plant 2'),
 (287, '21050961', 'SOPIAN SANTANG', 4, 'Plant 1'),
@@ -615,7 +634,7 @@ INSERT INTO `karyawan` (`karyawan_id`, `karyawan_code`, `karyawan_name`, `depart
 (312, '22041114', 'GINTARA RAHMA ARDIS SAPUTRO ', 7, ''),
 (313, '22041116', 'MUHAMMAD RIZKI ', 7, ''),
 (314, '22041118', 'WAHYU  BUDI UTOMO ', 1, 'Plant 2'),
-(315, '22061120', 'DWI CAHYONO', 6, ''),
+(315, '22061120', 'DWI CAHYONO', 6, 'Plant 1'),
 (316, '22061122', 'RIZALDI LUTHFI RAMADHAN', 4, 'Plant 1'),
 (317, '22071124', 'MOHAMAD AJI PRASETIYO', 9, ''),
 (318, '22071125', 'MUHAMAD FAUZAN HAKIM', 1, 'Plant 2'),
@@ -762,7 +781,6 @@ CREATE TABLE `spl` (
   `date` date NOT NULL,
   `shift` varchar(20) NOT NULL,
   `karyawan_id` int(11) NOT NULL,
-  `departement_id` int(11) NOT NULL,
   `from` time NOT NULL,
   `to` time NOT NULL,
   `description` text NOT NULL,
@@ -777,9 +795,12 @@ CREATE TABLE `spl` (
 -- Dumping data for table `spl`
 --
 
-INSERT INTO `spl` (`spl_id`, `date`, `shift`, `karyawan_id`, `departement_id`, `from`, `to`, `description`, `approve_foreman`, `approve_manager`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(33, '2024-01-10', 'Shift 1', 1, 3, '17:00:00', '20:00:00', 'Input STO', 1, 1, '2024-01-10 09:37:44', '2024-01-10 09:40:55', '0000-00-00 00:00:00'),
-(34, '2024-01-17', 'Shift 1', 101, 12, '17:00:00', '20:30:00', 'Report data Purchasing', NULL, NULL, '2024-01-17 03:37:34', '2024-01-17 07:52:15', '0000-00-00 00:00:00');
+INSERT INTO `spl` (`spl_id`, `date`, `shift`, `karyawan_id`, `from`, `to`, `description`, `approve_foreman`, `approve_manager`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(37, '2024-01-18', 'Shift 1', 277, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 04:56:41', '2024-01-18 05:50:21', '0000-00-00 00:00:00'),
+(38, '2024-01-18', 'Shift 2', 315, '17:00:00', '20:00:00', 'Install Ulang', NULL, NULL, '2024-01-18 05:53:00', '2024-01-18 05:53:00', '0000-00-00 00:00:00'),
+(39, '2024-01-18', 'Shift 1', 231, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 05:59:43', '2024-01-18 05:59:43', '0000-00-00 00:00:00'),
+(40, '2024-01-18', 'Shift 1', 115, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 06:08:49', '2024-01-18 06:08:49', '0000-00-00 00:00:00'),
+(41, '2024-01-18', 'Shift 1', 101, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 06:09:45', '2024-01-18 06:09:45', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -818,7 +839,9 @@ INSERT INTO `users` (`id`, `email`, `username`, `departement_id`, `password_hash
 (14, 'ai_fitria@ijtt-id.com', 'Ai Fitria', 5, '$2y$10$UW9lQjCFWgxp1fT2vuioZ.dZR7t9oZu2CkcFyZewVOV5jZAlaY8I6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL),
 (15, 'heni.priyanti@ijtt-id.com', 'Heni Priyanti', 5, '$2y$10$mX02zl0XhTY2m2SWNn6UB.NvJtqg4NVha5SQkLiH/BKv6FvWSTfYu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL),
 (16, 'ipul@ijtt-id.com', 'Muhamad Syaifulloh', 12, '$2y$10$X2mpNzRLAfkHW1QaVxhWjO5H0UlJHpC0nbf2PeTCe7n7K5tM3qQhi', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL),
-(17, 'janiar@ijtt-id.com', 'Janiar Usman', 12, '$2y$10$KfsyF5ZlVruN0DBGGEqRreRG.QolzmxDYjCdX7cajc6lzOu.qOSui', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL);
+(17, 'janiar@ijtt-id.com', 'Janiar Usman', 12, '$2y$10$KfsyF5ZlVruN0DBGGEqRreRG.QolzmxDYjCdX7cajc6lzOu.qOSui', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL),
+(18, 'ida.rusdiansyah@ijtt-id.com', 'Ida Rusdiansyah', 14, '$2y$10$Mz8VNO907.7Hl8u5VERGMO4Z1mQDT8kHjlRGIdtoPCPrWoMplnmEy', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL),
+(19, 'aris.mamun@ijtt-id.com', 'Aris Ma\'Mun', 14, '$2y$10$kPL8vhpDpR/LZkrmJ3W.IeRwZ2Vy8gXIwOICARf8p4A26VjPB2.a6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -932,19 +955,19 @@ ALTER TABLE `auth_activation_attempts`
 -- AUTO_INCREMENT for table `auth_groups`
 --
 ALTER TABLE `auth_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `auth_groups_users`
 --
 ALTER TABLE `auth_groups_users`
-  MODIFY `groups_users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `groups_users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -986,13 +1009,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `spl`
 --
 ALTER TABLE `spl`
-  MODIFY `spl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `spl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

@@ -91,7 +91,7 @@
                             <select name="karyawan_id" id="karyawan_id" class="form-control form-control-sm select2" style="width: 100%;">
                                 <option disabled hidden selected>Pilih Karyawan</option>
                                 <?php foreach ($karyawans as $karyawan) : ?>
-                                    <option value="<?= $karyawan['karyawan_id'] ?>"><?= $karyawan['karyawan_name'] ?></option>
+                                    <option value="<?= $karyawan['karyawan_id'] ?>"><?= $karyawan['karyawan_code'] ?> | <?= $karyawan['karyawan_name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small class="help-block text-danger"></small>
