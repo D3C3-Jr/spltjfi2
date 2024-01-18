@@ -27,7 +27,7 @@ $(document).ready(function () {
             filename: 'Spl',
             title: 'Data Spl',
             exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             }
         },
         {
@@ -86,7 +86,7 @@ $(document).ready(function () {
                     .css('font-size', 'inherite');
             },
             exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             }
         },
         {
@@ -172,9 +172,9 @@ function editSpl(spl_id) {
         success: function (data) {
             $('[name="spl_id"]').val(data.spl_id);
             $('[name="date"]').val(data.date);
+            $('[name="plant"]').val(data.plant);
             $('[name="shift"]').val(data.shift);
             $('[name="karyawan_id"]').val(data.karyawan_id).select2();
-            $('[name="departement_id"]').val(data.departement_id);
             $('[name="from"]').val(data.from);
             $('[name="to"]').val(data.to);
             $('[name="description"]').val(data.description);

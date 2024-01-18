@@ -94,9 +94,11 @@ class SplController extends BaseController
                 $approve_manager = '<i class="badge badge-sm badge-primary">approve</i>';
             };
 
+
             $row = [];
             $row[] = $no;
             $row[] = $temp['date'];
+            $row[] = $temp['plant'];
             $row[] = $temp['shift'];
             $row[] = $temp['karyawan_code'];
             $row[] = $temp['karyawan_name'];
@@ -127,7 +129,6 @@ class SplController extends BaseController
             'date'              => $this->request->getVar('date'),
             'shift'             => $this->request->getVar('shift'),
             'karyawan_id'       => $this->request->getVar('karyawan_id'),
-            'departement_id'    => $this->request->getVar('departement_id'),
             'from'              => $this->request->getVar('from'),
             'to'                => $this->request->getVar('to'),
             'description'       => $this->request->getVar('description'),
@@ -160,7 +161,6 @@ class SplController extends BaseController
             'date'              => $this->request->getVar('date'),
             'shift'             => $this->request->getVar('shift'),
             'karyawan_id'       => $this->request->getVar('karyawan_id'),
-            'departement_id'    => $this->request->getVar('departement_id'),
             'from'              => $this->request->getVar('from'),
             'to'                => $this->request->getVar('to'),
             'description'       => $this->request->getVar('description'),
@@ -209,11 +209,6 @@ class SplController extends BaseController
             if ($validation->hasError('karyawan_id')) {
                 $data['inputerror'][] = 'karyawan_id';
                 $data['error_string'][] = $validation->getError('karyawan_id');
-                $data['status'] = false;
-            }
-            if ($validation->hasError('departement_id')) {
-                $data['inputerror'][] = 'departement_id';
-                $data['error_string'][] = $validation->getError('departement_id');
                 $data['status'] = false;
             }
             if ($validation->hasError('from')) {

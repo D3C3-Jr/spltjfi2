@@ -12,7 +12,7 @@ class SplModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['date', 'shift', 'karyawan_id', 'departement_id', 'from', 'to', 'description', 'approve_foreman', 'approve_manager',];
+    protected $allowedFields    = ['date', 'shift', 'karyawan_id', 'from', 'to', 'description', 'approve_foreman', 'approve_manager'];
 
     // Dates
     protected $useTimestamps = true;
@@ -56,13 +56,6 @@ class SplModel extends Model
                     'required' => '{field} harus di isi'
                 ]
             ],
-            'departement_id' => [
-                'rules' => 'required',
-                'label' => 'Departement',
-                'errors' => [
-                    'required' => '{field} harus di isi'
-                ]
-            ],
             'from' => [
                 'rules' => 'required',
                 'label' => 'Dari',
@@ -91,23 +84,28 @@ class SplModel extends Model
     public function ajaxGetData($start, $length)
     {
         if (in_groups('Administrator') || in_groups('Manager HRGA') || in_groups('Admin HRGA')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->orderBy('date', 'asc')->findAll($length, $start);
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->orderBy('date', 'asc')->findAll($length, $start);
         } elseif (in_groups('Accounting') || in_groups('Manager Accounting')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Fin & Acc')->orderBy('date', 'asc')->findAll($length, $start);
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Fin & Acc')->orderBy('date', 'asc')->findAll($length, $start);
         } elseif (in_groups('Purchasing') || in_groups('Manager Purchasing')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Purchasing')->orderBy('date', 'asc')->findAll($length, $start);
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Purchasing')->orderBy('date', 'asc')->findAll($length, $start);
+        } elseif (in_groups('Sales') || in_groups('Manager Sales')) {
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->orderBy('date', 'asc')->findAll($length, $start);
         }
+
         return $result;
     }
 
     public function ajaxGetDataSearch($search, $start, $length)
     {
         if (in_groups('Administrator') || in_groups('Manager HRGA') || in_groups('Admin HRGA')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->like('shift', $search)->orLike('date', $search)->orLike('departement_name', $search)->findAll($start, $length);
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->like('shift', $search)->orLike('date', $search)->orLike('departement_name', $search)->orLike('plant', $search)->findAll($start, $length);
         } elseif (in_groups('Accounting') || in_groups('Manager Accounting')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Fin & Acc')->orderBy('karyawan_code', 'ASC')->like('date', $search)->findAll($start, $length);
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Fin & Acc')->orderBy('karyawan_code', 'ASC')->like('date', $search)->findAll($start, $length);
         } elseif (in_groups('Purchasing') || in_groups('Manager Purchasing')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Purchasing')->orderBy('karyawan_code', 'ASC')->like('date', $search)->findAll($start, $length);
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Purchasing')->orderBy('karyawan_code', 'ASC')->like('date', $search)->findAll($start, $length);
+        } elseif (in_groups('Sales') || in_groups('Manager Sales')) {
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->orderBy('karyawan_code', 'ASC')->like('date', $search)->findAll($start, $length);
         }
         return $result;
     }
@@ -117,9 +115,11 @@ class SplModel extends Model
         if (in_groups('Administrator') || in_groups('Manager HRGA') || in_groups('Admin HRGA')) {
             $result = $this->countAllResults();
         } elseif (in_groups('Accounting') || in_groups('Manager Accounting')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Fin & Acc')->countAllResults();
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Fin & Acc')->countAllResults();
         } elseif (in_groups('Purchasing') || in_groups('Manager Purchasing')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Purchasing')->countAllResults();
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Purchasing')->countAllResults();
+        } elseif (in_groups('Sales') || in_groups('Manager Sales')) {
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->countAllResults();
         }
         if (isset($result)) {
             return $result;
@@ -130,11 +130,13 @@ class SplModel extends Model
     public function ajaxGetTotalSearch($search)
     {
         if (in_groups('Administrator') || in_groups('Manager HRGA') || in_groups('Admin HRGA')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->like('shift', $search)->orLike('date', $search)->orLike('departement_name', $search)->countAllResults();
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->like('shift', $search)->orLike('date', $search)->orLike('departement_name', $search)->countAllResults();
         } elseif (in_groups('Accounting') || in_groups('Manager Accounting')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Fin & Acc')->orderBy('karyawan_code', 'ASC')->like('date', $search)->countAllResults();
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Fin & Acc')->orderBy('karyawan_code', 'ASC')->like('date', $search)->countAllResults();
         } elseif (in_groups('Purchasing') || in_groups('Manager Purchasing')) {
-            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = spl.departement_id')->where('departement_name', 'Purchasing')->orderBy('karyawan_code', 'ASC')->like('date', $search)->countAllResults();
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Purchasing')->orderBy('karyawan_code', 'ASC')->like('date', $search)->countAllResults();
+        } elseif (in_groups('Sales') || in_groups('Manager Sales')) {
+            $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->orderBy('karyawan_code', 'ASC')->like('date', $search)->countAllResults();
         }
         return $result;
     }

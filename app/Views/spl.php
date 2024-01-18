@@ -13,6 +13,7 @@
                     <tr>
                         <th>#</th>
                         <th class="col-sm-1">Tanggal</th>
+                        <th>Plant</th>
                         <th>Shift</th>
                         <th>NIK</th>
                         <th>Nama</th>
@@ -33,6 +34,7 @@
                     <tr>
                         <th>#</th>
                         <th class="col-sm-1">Tanggal</th>
+                        <th>Plant</th>
                         <th>Shift</th>
                         <th>NIK</th>
                         <th>Nama</th>
@@ -96,18 +98,6 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <label for="departement_id" class="col-sm-3 col-form-label">Departement</label>
-                        <div class="col-sm-9">
-                            <select name="departement_id" id="departement_id" class="form-control form-control-sm">
-                                <option disabled hidden selected>Pilih Departement</option>
-                                <?php foreach ($departements as $departement) : ?>
-                                    <option value="<?= $departement['departement_id'] ?>"><?= $departement['departement_name'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <small class="help-block text-danger"></small>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
                         <label for="from" class="col-sm-3 col-form-label">Jam</label>
                         <div class="col-sm-4">
                             <input type="time" name="from" id="from" class="form-control form-control-sm">
@@ -128,7 +118,7 @@
                     </div>
 
                     <!-- FIRST APPROVAL -->
-                    <?php if (in_groups('Manager Accounting') || in_groups('Manager Purchasing')) : ?>
+                    <?php if (in_groups('Manager Accounting') || in_groups('Manager Purchasing') || in_groups('Manager Sales')) : ?>
                         <div class="row mb-2">
                             <label for="approve_foreman" class="col-sm-3 col-form-label">Manager Dept</label>
                             <div class="col-sm-9">
@@ -190,11 +180,5 @@
     </div>
 </div>
 <!-- /.modal -->
-
-<script>
-    $(document).ready(function() {
-
-    })
-</script>
 
 <?= $this->endSection('content'); ?>

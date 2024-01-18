@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="departement_id" class="col-sm-3 col-form-label">Password</label>
+                        <label for="departement_id" class="col-sm-3 col-form-label">Departement</label>
                         <div class="col-sm-9">
                             <select name="departement_id" id="departement_id" class="form-control">
                                 <option hidden selected disabled>Pilih Departement</option>
@@ -151,7 +151,7 @@
                         <label for="user_id" class="col-sm-3 col-form-label">User</label>
                         <div class="col-sm-9">
                             <select name="user_id" id="user_id" class="form-control">
-                                <option selected disabled hidden>Pilih Role</option>
+                                <option selected disabled hidden>Pilih User</option>
                                 <?php foreach ($users as $user) : ?>
                                     <option value="<?= $user['id'] ?>"><?= $user['email'] ?></option>
                                 <?php endforeach; ?>
