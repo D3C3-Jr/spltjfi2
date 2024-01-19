@@ -81,6 +81,13 @@ class SplModel extends Model
         return $rulesValidation;
     }
 
+    public function getSales()
+    {
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->selectSum('to')->first();
+        // $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->countAllResults();
+        // return $result;
+    }
+
     public function ajaxGetData($start, $length)
     {
         if (in_groups('Administrator') || in_groups('Manager HRGA') || in_groups('Admin HRGA')) {

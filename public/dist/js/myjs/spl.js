@@ -14,7 +14,10 @@ $(document).ready(function () {
         "processing": true,
         "serverSide": true,
         dom: 'Bfrtip',
-
+        rowReorder: true,
+        columnDefs: [
+            { orderable: false, targets: '_all' }
+        ],
         buttons: [{
             text: 'Tambah Data',
             action: function (e, dt, button, config) {

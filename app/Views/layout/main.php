@@ -98,6 +98,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="<?= base_url() ?>dist/js/myjs/user.js"></script>
     <!-- Select2 -->
     <script src="<?= base_url() ?>plugins/select2/js/select2.full.min.js"></script>
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="<?= base_url() ?>plugins/chart.js/Chart.min.js"></script>
+
 </body>
 
 </html>
