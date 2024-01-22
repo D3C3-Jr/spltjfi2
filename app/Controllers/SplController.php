@@ -94,7 +94,7 @@ class SplController extends BaseController
                 $approve_manager = '<i class="badge badge-sm badge-primary">approve</i>';
             };
 
-            $total = $temp['total'] / 3600;
+            $total = round($temp['total'] / 3600, PHP_ROUND_HALF_UP);
 
             $row = [];
             $row[] = $no;

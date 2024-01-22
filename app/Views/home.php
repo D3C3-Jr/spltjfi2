@@ -70,11 +70,11 @@
         var intersect = true
 
 
-        var sales = <?= implode($sales) / 3600; ?>;
-        var hrga = <?= implode($hrga) / 3600; ?>;
-        var purchasing = <?= implode($purchasing) / 3600; ?>;
-        var accounting = <?= implode($accounting) / 3600; ?>;
-        var total = <?= implode($total) / 3600; ?>;
+        var sales = <?= round(implode($sales) / 3600, PHP_ROUND_HALF_UP); ?>;
+        var hrga = <?= round(implode($hrga) / 3600, PHP_ROUND_HALF_UP); ?>;
+        var purchasing = <?= round(implode($purchasing) / 3600, PHP_ROUND_HALF_UP); ?>;
+        var accounting = <?= round(implode($accounting) / 3600, PHP_ROUND_HALF_UP); ?>;
+        var total = <?= round(implode($total) / 3600, PHP_ROUND_HALF_UP); ?>;
 
 
         var $otPerDepartement = $('#otPerDepartement')
