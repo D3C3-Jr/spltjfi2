@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2024 at 08:26 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jan 22, 2024 at 04:06 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -216,7 +216,9 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (93, '192.168.175.105', 'ida.rusdiansyah@ijtt-id.com', 18, '2024-01-18 06:04:32', 1),
 (94, '192.168.175.105', 'ipul@ijtt-id.com', 16, '2024-01-18 06:09:20', 1),
 (95, '192.168.175.105', 'janiar@ijtt-id.com', 17, '2024-01-18 06:10:01', 1),
-(96, '192.168.175.105', 'heni.priyanti@ijtt-id.com', 15, '2024-01-18 06:10:42', 1);
+(96, '192.168.175.105', 'heni.priyanti@ijtt-id.com', 15, '2024-01-18 06:10:42', 1),
+(97, '::1', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-19 04:28:22', 1),
+(98, '::1', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-22 02:11:43', 1);
 
 -- --------------------------------------------------------
 
@@ -783,6 +785,7 @@ CREATE TABLE `spl` (
   `karyawan_id` int(11) NOT NULL,
   `from` time NOT NULL,
   `to` time NOT NULL,
+  `total` decimal(10,0) NOT NULL,
   `description` text NOT NULL,
   `approve_foreman` int(11) DEFAULT NULL,
   `approve_manager` int(11) DEFAULT NULL,
@@ -795,12 +798,11 @@ CREATE TABLE `spl` (
 -- Dumping data for table `spl`
 --
 
-INSERT INTO `spl` (`spl_id`, `date`, `shift`, `karyawan_id`, `from`, `to`, `description`, `approve_foreman`, `approve_manager`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(37, '2024-01-18', 'Shift 1', 277, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 04:56:41', '2024-01-18 05:50:21', '0000-00-00 00:00:00'),
-(38, '2024-01-18', 'Shift 2', 315, '17:00:00', '20:00:00', 'Install Ulang', NULL, NULL, '2024-01-18 05:53:00', '2024-01-18 05:53:00', '0000-00-00 00:00:00'),
-(39, '2024-01-18', 'Shift 1', 231, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 05:59:43', '2024-01-18 05:59:43', '0000-00-00 00:00:00'),
-(40, '2024-01-18', 'Shift 1', 115, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 06:08:49', '2024-01-18 06:08:49', '0000-00-00 00:00:00'),
-(41, '2024-01-18', 'Shift 1', 101, '17:00:00', '20:00:00', 'Input Data', NULL, NULL, '2024-01-18 06:09:45', '2024-01-18 06:09:45', '0000-00-00 00:00:00');
+INSERT INTO `spl` (`spl_id`, `date`, `shift`, `karyawan_id`, `from`, `to`, `total`, `description`, `approve_foreman`, `approve_manager`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(43, '2024-01-22', 'Shift 1', 283, '08:00:00', '17:00:00', 30600, 'Input SPL', NULL, NULL, '2024-01-22 02:19:49', '2024-01-22 03:02:16', '0000-00-00 00:00:00'),
+(47, '2024-01-22', 'Shift 1', 115, '17:00:00', '20:00:00', 9000, 'Input data', NULL, NULL, '2024-01-22 02:30:12', '2024-01-22 02:30:12', '0000-00-00 00:00:00'),
+(49, '2024-01-22', 'Shift 1', 101, '17:00:00', '20:00:00', 9000, 'Input data Master', NULL, NULL, '2024-01-22 02:39:34', '2024-01-22 02:39:34', '0000-00-00 00:00:00'),
+(50, '2024-01-22', 'Shift 1', 1, '17:00:00', '20:00:00', 9000, 'Rekap Jurnal', NULL, NULL, '2024-01-22 02:40:02', '2024-01-22 02:40:02', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -967,7 +969,7 @@ ALTER TABLE `auth_groups_users`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1009,7 +1011,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `spl`
 --
 ALTER TABLE `spl`
-  MODIFY `spl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `spl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `users`

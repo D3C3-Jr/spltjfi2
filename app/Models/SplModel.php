@@ -12,7 +12,7 @@ class SplModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['date', 'shift', 'karyawan_id', 'from', 'to', 'description', 'approve_foreman', 'approve_manager'];
+    protected $allowedFields    = ['date', 'shift', 'karyawan_id', 'from', 'to', 'total', 'description', 'approve_foreman', 'approve_manager'];
 
     // Dates
     protected $useTimestamps = true;
@@ -83,9 +83,21 @@ class SplModel extends Model
 
     public function getSales()
     {
-        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->selectSum('to')->first();
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->selectSum('total')->first();
         // $result = $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Sales')->countAllResults();
         // return $result;
+    }
+    public function getHrga()
+    {
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'HRGA')->selectSum('total')->first();
+    }
+    public function getPurchasing()
+    {
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Purchasing')->selectSum('total')->first();
+    }
+    public function getAccounting()
+    {
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Fin & Acc')->selectSum('total')->first();
     }
 
     public function ajaxGetData($start, $length)

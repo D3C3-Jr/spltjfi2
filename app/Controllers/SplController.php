@@ -70,8 +70,8 @@ class SplController extends BaseController
         $data = [];
         $no = $start + 1;
         foreach ($list as $temp) {
-            $from = date('H:i', strtotime($temp['from']));
-            $to = date('H:i', strtotime($temp['to']));
+            $from       = date('H:i', strtotime($temp['from']));
+            $to         = date('H:i', strtotime($temp['to']));
             $total      = (strtotime($temp['to']) - strtotime($temp['from'])) - 1800;
 
 
@@ -94,6 +94,7 @@ class SplController extends BaseController
                 $approve_manager = '<i class="badge badge-sm badge-primary">approve</i>';
             };
 
+            $total = $temp['total'] / 3600;
 
             $row = [];
             $row[] = $no;
@@ -105,7 +106,7 @@ class SplController extends BaseController
             $row[] = $temp['departement_name'];
             $row[] = $from;
             $row[] = $to;
-            $row[] = date('H:i', $total);
+            $row[] = $total;
             $row[] = $temp['description'];
             $row[] = $approve_foreman;
             $row[] = $approve_manager;
@@ -124,13 +125,16 @@ class SplController extends BaseController
     public function splSave()
     {
         $this->_validate('save');
-
+        $from       = date('H:i', strtotime($this->request->getVar('from')));
+        $to         = date('H:i', strtotime($this->request->getVar('to')));
+        $total      = (strtotime($to) - strtotime($from)) - 1800;
         $data = [
             'date'              => $this->request->getVar('date'),
             'shift'             => $this->request->getVar('shift'),
             'karyawan_id'       => $this->request->getVar('karyawan_id'),
             'from'              => $this->request->getVar('from'),
             'to'                => $this->request->getVar('to'),
+            'total'             => $total,
             'description'       => $this->request->getVar('description'),
             'approve_foreman'   => $this->request->getVar('approve_foreman'),
             'approve_manager'   => $this->request->getVar('approve_manager'),
@@ -155,7 +159,9 @@ class SplController extends BaseController
         $this->_validate('update');
         $spl_id = $this->request->getVar('spl_id');
         // $spl_id = $this->Spl->find($spl_id);
-
+        $from       = date('H:i', strtotime($this->request->getVar('from')));
+        $to         = date('H:i', strtotime($this->request->getVar('to')));
+        $total      = (strtotime($to) - strtotime($from)) - 1800;
         $data = [
             'spl_id' => $spl_id,
             'date'              => $this->request->getVar('date'),
@@ -163,6 +169,7 @@ class SplController extends BaseController
             'karyawan_id'       => $this->request->getVar('karyawan_id'),
             'from'              => $this->request->getVar('from'),
             'to'                => $this->request->getVar('to'),
+            'total'             => $total,
             'description'       => $this->request->getVar('description'),
             'approve_foreman'   => $this->request->getVar('approve_foreman'),
             'approve_manager'   => $this->request->getVar('approve_manager'),

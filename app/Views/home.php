@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header border-0">
             <div class="d-flex justify-content-between">
-                <h3 class="card-title">Grafik Over Time (person)</h3>
+                <h3 class="card-title">Grafik Over Time (jam)</h3>
             </div>
         </div>
         <div class="card-body">
@@ -64,33 +64,37 @@
         var mode = 'index'
         var intersect = true
 
-        var sales = <?= floor(implode($sales) / 3600); ?>
+        var sales = <?= implode($sales) / 3600; ?>;
+        var hrga = <?= implode($hrga) / 3600; ?>;
+        var purchasing = <?= implode($purchasing) / 3600; ?>;
+        var accounting = <?= implode($accounting) / 3600; ?>;
+
 
         var $salesChart = $('#sales-chart')
         // eslint-disable-next-line no-unused-vars
         var salesChart = new Chart($salesChart, {
             type: 'bar',
             data: {
-                labels: ['JAN'],
+                labels: ['2024'],
                 datasets: [{
                         backgroundColor: '#007bff',
                         borderColor: '#007bff',
-                        data: [sales]
+                        data: [hrga]
                     },
                     {
                         backgroundColor: '#28a745',
                         borderColor: '#28a745',
-                        data: [2]
+                        data: [purchasing]
                     },
                     {
                         backgroundColor: '#ffc107',
                         borderColor: '#ffc107',
-                        data: [2]
+                        data: [accounting]
                     },
                     {
                         backgroundColor: '#dc3545',
                         borderColor: '#dc3545',
-                        data: [4]
+                        data: [sales]
                     }
                 ]
             },
