@@ -16,16 +16,18 @@ class Home extends BaseController
 
     public function index(): string
     {
-        $totalSales = $this->Spl->getSales();
-        $totalHrga = $this->Spl->getHrga();
-        $totalPurchasing = $this->Spl->getPurchasing();
-        $totalAccounting = $this->Spl->getAccounting();
+        $totalSales         = $this->Spl->getSales();
+        $totalHrga          = $this->Spl->getHrga();
+        $totalPurchasing    = $this->Spl->getPurchasing();
+        $totalAccounting    = $this->Spl->getAccounting();
+        $totalAll           = $this->Spl->getAll();
         $data = [
-            'title' => 'Home',
-            'sales'  => $totalSales,
-            'hrga'  => $totalHrga,
-            'purchasing'  => $totalPurchasing,
-            'accounting'  => $totalAccounting,
+            'title'         => 'Home',
+            'sales'         => $totalSales,
+            'hrga'          => $totalHrga,
+            'purchasing'    => $totalPurchasing,
+            'accounting'    => $totalAccounting,
+            'total'         => $totalAll,
         ];
         return view('home', $data);
     }

@@ -99,6 +99,10 @@ class SplModel extends Model
     {
         return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Fin & Acc')->selectSum('total')->first();
     }
+    public function getAll()
+    {
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->selectSum('total')->first();
+    }
 
     public function ajaxGetData($start, $length)
     {
