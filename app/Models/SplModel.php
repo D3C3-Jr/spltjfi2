@@ -99,9 +99,13 @@ class SplModel extends Model
     {
         return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->where('departement_name', 'Fin & Acc')->selectSum('total')->first();
     }
-    public function getAll()
+    public function getAll2023()
     {
-        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->selectSum('total')->first();
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->like('date', '2023')->selectSum('total')->first();
+    }
+    public function getAll2024()
+    {
+        return $this->join('karyawan', 'karyawan.karyawan_id = spl.karyawan_id')->join('departement', 'departement.departement_id = karyawan.departement_id')->like('date', '2024')->selectSum('total')->first();
     }
 
     public function ajaxGetData($start, $length)

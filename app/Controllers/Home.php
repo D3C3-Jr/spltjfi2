@@ -20,14 +20,16 @@ class Home extends BaseController
         $totalHrga          = $this->Spl->getHrga();
         $totalPurchasing    = $this->Spl->getPurchasing();
         $totalAccounting    = $this->Spl->getAccounting();
-        $totalAll           = $this->Spl->getAll();
+        $totalAll2023          = $this->Spl->getAll2023();
+        $totalAll2024          = $this->Spl->getAll2024();
         $data = [
             'title'         => 'Home',
             'sales'         => $totalSales,
             'hrga'          => $totalHrga,
             'purchasing'    => $totalPurchasing,
             'accounting'    => $totalAccounting,
-            'total'         => $totalAll,
+            'total2023'     => $totalAll2023,
+            'total2024'     => $totalAll2024,
         ];
         return view('home', $data);
     }

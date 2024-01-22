@@ -74,7 +74,8 @@
         var hrga = <?= round(implode($hrga) / 3600, PHP_ROUND_HALF_UP); ?>;
         var purchasing = <?= round(implode($purchasing) / 3600, PHP_ROUND_HALF_UP); ?>;
         var accounting = <?= round(implode($accounting) / 3600, PHP_ROUND_HALF_UP); ?>;
-        var total = <?= round(implode($total) / 3600, PHP_ROUND_HALF_UP); ?>;
+        var total2023 = <?= round(implode($total2023) / 3600, PHP_ROUND_HALF_UP); ?>;
+        var total2024 = <?= round(implode($total2024) / 3600, PHP_ROUND_HALF_UP); ?>;
 
 
         var $otPerDepartement = $('#otPerDepartement')
@@ -144,7 +145,7 @@
                 datasets: [{
                     backgroundColor: '#28a745',
                     borderColor: '#28a745',
-                    data: [total, sales, 0]
+                    data: [total2023, total2024, 0]
                 }, ],
             },
             options: {
