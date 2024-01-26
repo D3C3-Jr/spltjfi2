@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2024 at 04:06 AM
+-- Generation Time: Jan 26, 2024 at 03:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -218,7 +218,9 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (95, '192.168.175.105', 'janiar@ijtt-id.com', 17, '2024-01-18 06:10:01', 1),
 (96, '192.168.175.105', 'heni.priyanti@ijtt-id.com', 15, '2024-01-18 06:10:42', 1),
 (97, '::1', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-19 04:28:22', 1),
-(98, '::1', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-22 02:11:43', 1);
+(98, '::1', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-22 02:11:43', 1),
+(99, '::1', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-23 07:28:18', 1),
+(100, '::1', 'dwi.cahyono@ijtt-id.com', 1, '2024-01-26 02:14:02', 1);
 
 -- --------------------------------------------------------
 
@@ -799,10 +801,11 @@ CREATE TABLE `spl` (
 --
 
 INSERT INTO `spl` (`spl_id`, `date`, `shift`, `karyawan_id`, `from`, `to`, `total`, `description`, `approve_foreman`, `approve_manager`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(43, '2024-01-22', 'Shift 1', 283, '08:00:00', '17:00:00', 30600, 'Input SPL', NULL, NULL, '2024-01-22 02:19:49', '2024-01-22 03:02:16', '0000-00-00 00:00:00'),
+(43, '2024-01-26', 'Shift 1', 283, '07:45:00', '16:50:00', 30900, 'Input SPL', NULL, NULL, '2024-01-22 02:19:49', '2024-01-26 02:15:40', '0000-00-00 00:00:00'),
 (47, '2024-01-22', 'Shift 1', 115, '17:00:00', '20:00:00', 9000, 'Input data', NULL, NULL, '2024-01-22 02:30:12', '2024-01-22 02:30:12', '0000-00-00 00:00:00'),
 (49, '2024-01-22', 'Shift 1', 101, '17:00:00', '20:00:00', 9000, 'Input data Master', NULL, NULL, '2024-01-22 02:39:34', '2024-01-22 02:39:34', '0000-00-00 00:00:00'),
-(50, '2024-01-22', 'Shift 1', 1, '17:00:00', '20:00:00', 9000, 'Rekap Jurnal', NULL, NULL, '2024-01-22 02:40:02', '2024-01-22 02:40:02', '0000-00-00 00:00:00');
+(50, '2024-01-22', 'Shift 1', 1, '17:00:00', '20:00:00', 9000, 'Rekap Jurnal', NULL, NULL, '2024-01-22 02:40:02', '2024-01-22 02:40:02', '0000-00-00 00:00:00'),
+(51, '2023-12-24', 'Shift 1', 207, '07:45:00', '16:50:00', 30900, 'Input SPL', NULL, NULL, '2024-01-22 06:01:32', '2024-01-22 08:28:49', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -969,7 +972,7 @@ ALTER TABLE `auth_groups_users`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1011,7 +1014,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `spl`
 --
 ALTER TABLE `spl`
-  MODIFY `spl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `spl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `users`
